@@ -13,6 +13,8 @@
 	<bean id="napAPorterService" class="com.product.service.impl.NapAPorterServiceImpl" autowire="byName"/>
 	
 	<bean id="suService" class="com.product.service.impl.SuServiceImpl" autowire="byName"/>
+	
+	<bean id="mrPorterService" class="com.product.service.impl.MrPorterServiceImpl" autowire="byName"/>
 		
     <!-- 缓存系统常用数据 -->
 	<bean class="com.product.core.CachedDataProcessor"/>

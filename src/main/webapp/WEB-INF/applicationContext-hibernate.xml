@@ -36,6 +36,7 @@
 	  <list>		
 	      <value>cfg/SuProduct.hbm.xml</value>	      
 	      <value>cfg/NapProduct.hbm.xml</value>
+	      <value>cfg/MrProduct.hbm.xml</value>
 	  </list>
 	</property>
 	 

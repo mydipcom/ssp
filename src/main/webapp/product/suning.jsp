@@ -133,10 +133,15 @@
 					<span class="arrow open"></span>
 					</a>
 					<ul class="sub-menu">
-						<li class="active">
+						<li>
 							<a href="${pageContext.request.contextPath}/product/nat_a_porter">
 							<i class="icon-direction"></i>
 							NET-A-PORTER</a>
+						</li>
+						<li>
+							<a href="${pageContext.request.contextPath}/product/mr">
+							<i class="icon-direction"></i>
+							MR PORTER</a>
 						</li>
 						
 					</ul>
@@ -285,9 +290,9 @@
 									<i class="fa fa-edit"></i>苏宁
 								</div>
 								<div class="actions">
-								    <a class="btn btn-default btn-sm" id="proprice_sort">ProPrice<i class="fa fa-arrow-down"></i></a>
-								    <a class="btn btn-default btn-sm" id="netprice_sort">NetPrice<i class="fa fa-arrow-down"></i></a>
-								    <a class="btn btn-default btn-sm" id="disprice_sort">DisPrice<i class="fa fa-arrow-down"></i></a>
+								    <a class="btn btn-default btn-sm" id="proprice_sort">易购价<i class="fa fa-arrow-down"></i></a>
+								    <a class="btn btn-default btn-sm" id="netprice_sort">参考价<i class="fa fa-arrow-down"></i></a>
+								    <a class="btn btn-default btn-sm" id="disprice_sort">差价<i class="fa fa-arrow-down"></i></a>
 									<div class="btn-group">
 										<a class="btn default" href="#" data-toggle="dropdown">
 											Columns <i class="fa fa-angle-down"></i>
@@ -346,7 +351,7 @@
 												<label class="control-label">Vendor:</label>
 											</div>
 											<span></span>
-											<a href="" id="copy_b" class="copy">复制</a>
+											
 										</div>
 										<div class="product-page-options">
 											<div class="pull-left">

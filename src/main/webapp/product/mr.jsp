@@ -11,7 +11,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8" />
-<title>NAT-A-PORTER</title>
+<title>MR PORTER</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
@@ -30,12 +30,20 @@
 <link
 	href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"
 	rel="stylesheet" type="text/css" />
-<link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link
+	href="../assets/global/plugins/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
+	rel="stylesheet" type="text/css" />
 
 <!-- END GLOBAL MANDATORY STYLES -->
-<link href="../assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
-<link href="../assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.Metronic.css" rel="stylesheet" type="text/css"/>
+<link
+	href="../assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="../assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.Metronic.css"
+	rel="stylesheet" type="text/css" />
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 
 <link
@@ -55,7 +63,8 @@
 
 <link href="../static/css/style-shop.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap-select/bootstrap-select.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="../assets/global/plugins/bootstrap-select/bootstrap-select.min.css" />
 
 <link href="../assets/global/css/components.css" rel="stylesheet"
 	type="text/css" />
@@ -91,77 +100,67 @@
 	<div class="page-container">
 		<!-- BEGIN SIDEBAR -->
 		<%-- <c:import url="/common/left" /> --%>
-		 <div class="page-sidebar-wrapper">
-		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-		<div class="page-sidebar navbar-collapse collapse">
-			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
-				<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-				
-				<li class="sidebar-toggler-wrapper">
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					<div class="sidebar-toggler">
-					</div>
-					<!-- END SIDEBAR TOGGLER BUTTON -->
-				</li>
-				<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-			    
-				 <li class="start">
-					<a href="javascript:;">
-					<i class="icon-film"></i>
-					<span class="title">综合类电商网站</span>
-					<span class="selected"></span>
-					<span class="arrow open"></span>
+		<div class="page-sidebar-wrapper">
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- BEGIN SIDEBAR MENU -->
+				<ul class="page-sidebar-menu" data-auto-scroll="true"
+					data-slide-speed="200">
+					<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+
+					<li class="sidebar-toggler-wrapper">
+						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+						<div class="sidebar-toggler"></div> <!-- END SIDEBAR TOGGLER BUTTON -->
+					</li>
+					<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+
+					<li class="start"><a href="javascript:;"> <i
+							class="icon-film"></i> <span class="title">综合类电商网站</span> <span
+							class="selected"></span> <span class="arrow open"></span>
 					</a>
-					<ul class="sub-menu">
-						<li class="active">
-							<a href="${pageContext.request.contextPath}/product/suning">
-							<i class="icon-direction"></i>
-							苏宁</a>
-						</li>
-						
-					</ul>
-				</li> 
-				<li class="start active open">
-					<a href="javascript:;">
-					<i class="icon-layers"></i>
-					<span class="title">时尚类电商网站</span>
-					<span class="selected"></span>
-					<span class="arrow open"></span>
+						<ul class="sub-menu">
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/product/suning"> <i
+									class="icon-direction"></i> 苏宁
+							</a></li>
+
+						</ul></li>
+					<li class="start active open"><a href="javascript:;"> <i
+							class="icon-layers"></i> <span class="title">时尚类电商网站</span> <span
+							class="selected"></span> <span class="arrow open"></span>
 					</a>
-					<ul class="sub-menu">
-						<li class="active">
-							<a href="${pageContext.request.contextPath}/product/nat_a_porter">
-							<i class="icon-direction"></i>
-							NET-A-PORTER</a>
-						</li>
-						<li>
-							<a href="${pageContext.request.contextPath}/product/mr">
-							<i class="icon-direction"></i>
-							MR PORTER</a>
-						</li>
-					</ul>
-				</li>
-				
-			</ul>
-			<!-- END SIDEBAR MENU -->
+						<ul class="sub-menu">
+							<li><a
+								href="${pageContext.request.contextPath}/product/nat_a_porter">
+									<i class="icon-direction"></i> NET-A-PORTER
+							</a></li>
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/product/mr"> <i
+									class="icon-direction"></i> MR PORTER
+							</a></li>
+
+						</ul></li>
+
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
 		</div>
-	</div>
 		<!-- END SIDEBAR -->
 		<!-- BEGIN CONTENT -->
 		<div class="page-content-wrapper">
 			<div class="page-content">
 				<!-- BEGIN SEARCH FORM -->
 				<div class="portlet-body">
-					<form id="searchForm" name="searchForm"
-						class="form-horizontal" method="post">
+					<form id="searchForm" name="searchForm" class="form-horizontal"
+						method="post">
 						<div class="row">
-						    <div class="col-md-6">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label class="col-md-3 control-label">Category</label>
 									<div class="col-md-9">
-										<select name="category" class="form-control bs-select" id="category">
+										<select name="pcat" class="form-control bs-select"
+											id="category" data-size="10">
 											<option value="">ALL</option>
 											<c:forEach var="cate" items="${category}">
 												<option value="${cate}">${cate}</option>
@@ -174,7 +173,8 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label">Brand</label>
 									<div class="col-md-9">
-										<select name="brand" class="form-control bs-select" data-size="10" id="brand">
+										<select name="pbrand" class="form-control bs-select"
+											data-size="10" id="brand">
 											<option value="">ALL</option>
 											<c:forEach var="brand" items="${brand}">
 												<option value="${brand}">${brand}</option>
@@ -183,20 +183,19 @@
 									</div>
 								</div>
 							</div>
-							
-							
+
+
 						</div>
 						<div class="row">
-							
+
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="col-md-3 control-label">Price</label>
 									<div class="col-md-9">
-									    <div class="input-group input-large">
-												<input type="text" class="form-control" name="price_from">
-												<span class="input-group-addon">
-												to </span>
-												<input type="text" class="form-control" name="price_to">
+										<div class="input-group input-large">
+											<input type="text" class="form-control" name="price_from">
+											<span class="input-group-addon"> to </span> <input
+												type="text" class="form-control" name="price_to">
 										</div>
 									</div>
 								</div>
@@ -205,7 +204,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label">Name</label>
 									<div class="col-md-9">
-										<input name="name" type="text" class="form-control">
+										<input name="pname" type="text" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -225,31 +224,32 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								<label class="control-label col-md-3">更新时间</label>
-							        <div class="col-md-9">
+									<label class="control-label col-md-3">更新时间</label>
+									<div class="col-md-9">
 										<p class="form-control-static red">
 											<font color="red">${createtime}</font>
 										</p>
-								    </div>
-							   </div>
+									</div>
+								</div>
 							</div>
-							
+
 						</div>
 					</form>
 				</div>
 				<!-- END SEARCH FORM -->
-                 <div class="row">
+				<div class="row">
 					<div class="col-md-12">
 						<!-- BEGIN EXAMPLE TABLE PORTLET-->
 						<div class="portlet  box green">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-edit"></i>NET-A-PORTER
+									<i class="fa fa-edit"></i>MR PORTER
 								</div>
 								<div class="actions">
-								    <a class="btn btn-default btn-sm" id="price_sort">Price<i class="fa fa-arrow-down"></i></a>
+									<a class="btn btn-default btn-sm" id="price_sort">Price<i
+										class="fa fa-arrow-down"></i></a>
 									<div class="btn-group">
-									    
+
 										<a class="btn default" href="#" data-toggle="dropdown">
 											Columns <i class="fa fa-angle-down"></i>
 										</a>
@@ -268,18 +268,18 @@
 							</div>
 							<div class="portlet-body">
 								<table class="table table-striped table-hover table-bordered"
-									id="nap_a_porter_table">
+									id="mr_table">
 								</table>
 							</div>
 						</div>
 						<!-- END EXAMPLE TABLE PORTLET-->
 					</div>
 				</div>
-				
-							
-				
-				
-				
+
+
+
+
+
 				<div class="modal" id="view" tabindex="-1" data-width="760">
 					<div class="modal-body">
 						<button type="button" class="close" data-dismiss="modal"
@@ -292,13 +292,11 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="slider"></div>
-										<div class="product-other-images">
-                                            <button class="btn btn-primary" id="download_images">Download Images</button>
-                                        </div>
 									</div>
 									<div class="col-md-6 col-sm-6">
-									    <div class="price-availability-block clearfix">
-											<a href="" id="copy_n" class="copy">复制</a><div class="name lead"></div>
+										<div class="price-availability-block clearfix">
+											<a href="" id="copy_n" class="copy">复制</a>
+											<div class="name lead"></div>
 										</div>
 										<div class="price-availability-block clearfix">
 											<div class="price">
@@ -306,42 +304,61 @@
 											</div>
 
 										</div>
-										
-										<div class="description" >
-										    <a href="" id="copy_d" class="copy">复制</a>
-											<p></p>
-										</div>
-										<div class="product-page-options">
-										    <div class="pull-left">
-											    
-												<label class="control-label">Brand:</label>
-											    <span></span>	
-											    <a href="" id="copy_b" class="copy">复制</a>
+                                         <div class="product-page-options">
+											<div class="pull-left">
+
+												<label class="control-label">Brand:</label> <span></span> <a
+													href="" id="copy_b" class="copy">复制</a>
 											</div>
 										</div>
 										<div class="product-page-options">
 											<div class="pull-left">
-											    <label class="control-label">PID:</label> <span></span>
+												<label class="control-label">PID:</label> <span></span>
 											</div>
 											<div class="pull-left">
 												<label class="control-label">category:</label> <span></span>
 											</div>
-                                            
 										</div>
-                                       
+										<div class="product-other-images">
+											<button class="btn btn-primary" id="download_images">Download
+												Images</button>
+										</div>
+
 
 									</div>
+
+									<div class="product-page-content">
+										<ul id="Tab" class="nav nav-tabs">
+											<li class="active"><a href="#editor_notes"
+												data-toggle="tab">EDITORS' NOTES</a></li>
+											<li><a href="#size_fit" data-toggle="tab">SIZE & FIT</a></li>
+											<li><a href="#details_care" data-toggle="tab">DETAILS & CARE</a></li>
+										</ul>
+										<div id="TabContent" class="tab-content">
+											<div class="tab-pane fade in active" id="editor_notes">
+												<p></p>
+											</div>
+											<div class="tab-pane fade" id="size_fit">
+											    
+											    
+											</div>
+											<div class="tab-pane fade " id="details_care">
+											    
+											    
+										   </div>
+										</div>
+									</div>
 								</div>
-								
-								
-             
-              
+
+
+
+
 							</div>
 						</div>
 					</div>
 				</div>
-               
-					 
+
+
 			</div>
 		</div>
 		<!-- END CONTENT -->
@@ -367,7 +384,8 @@
 		type="text/javascript"></script>
 	<script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js"
 		type="text/javascript"></script>
-	<script src="../assets/global/plugins/jquery-validation/js/jquery.validate.min.js"
+	<script
+		src="../assets/global/plugins/jquery-validation/js/jquery.validate.min.js"
 		type="text/javascript"></script>
 	<script
 		src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"
@@ -385,10 +403,12 @@
 		src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
 		type="text/javascript"></script>
 	<!-- END CORE PLUGINS -->
-	<script type="text/javascript" src="../assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="../assets/global/plugins/zclip/js/jquery.zclip.min.js"></script>
+	<script type="text/javascript"
+		src="../assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script type="text/javascript"
+		src="../assets/global/plugins/zclip/js/jquery.zclip.min.js"></script>
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	
+
 	<script
 		src="../assets/global/plugins/datatables/media/js/jquery.dataTables.js"
 		type="text/javascript"></script>
@@ -409,21 +429,22 @@
 		type="text/javascript"></script>
 	<script src="../assets/admin/layout/scripts/demo.js"
 		type="text/javascript"></script>
-	<script src="../assets/global/plugins/ion.rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>	
-    <script type="text/javascript" src="../static/js/yxMobileSlider.js"></script>
-    <script src="../static/js/nat_a_porter.js" type="text/javascript"></script>
+	<script
+		src="../assets/global/plugins/ion.rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	<script type="text/javascript" src="../static/js/yxMobileSlider.js"></script>
+	<script src="../static/js/mr_porter.js" type="text/javascript"></script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 	<script>
 		jQuery(document).ready(function() {
 			Metronic.init(); // init metronic core componets
 			Layout.init(); // init layout
 			Demo.init(); // init demo features
-			NapAPorter.init("<c:url value="/"/>");
+			MrPorter.init("<c:url value="/"/>");
 
 		});
 	</script>
-	
-    <!-- END JAVASCRIPTS -->
+
+	<!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>

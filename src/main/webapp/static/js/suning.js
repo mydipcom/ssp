@@ -48,17 +48,17 @@ var Suning = function () {
                 }
             ],
             "columns": [
-               { title: "Category", data: "productCatagory"},
+               { title: "分类", data: "productCatagory"},
 	           
-	           { title: "Name",   data: "productName" },
-	           { title: "NetPrice",  'render':function(data,type,row){
+	           { title: "名称",   data: "productName" },
+	           { title: "参考价格",  'render':function(data,type,row){
 	        	   	return "¥"+row.netPrice;
 	           } },
-	           { title: "PromotionPrice",  'render':function(data,type,row){
+	           { title: "易购价",  'render':function(data,type,row){
 	        	   	return "¥"+row.promotionPrice;
 	           } },
-	           { title: "Vendor",    data: "vendorName" },
-	           { title: "PartNumber",   data: "partNumber"  },
+	           { title: "店铺",    data: "vendorName" },
+	           { title: "ID",   data: "partNumber"  },
 	           { title: "Url", 'render':function(data,type,row){
 	        	   
                    return '<div class="actions"><a  class="btn btn-sm dark" data-toggle="modal"  href="'+row.productLink+'"  target="_blank">OPEN</a></div>';
@@ -310,18 +310,20 @@ var  handleZClip = function(){
 				copy:  function(){
 					   var descriptions = $('#des_p').text().split("#*#");
 					   var description = [];
-					   var html = '<table style="width: 602px; height: 350px; text-align: center;" border="0" cellspacing="0" cellpadding="0"><tbody>';
+					   var html = '<p style="text-align: justify;">'+
+					               '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>商品详情:</b></span></p>'+
+					                '<table style="width: 954px;text-align: center;" border="0" cellspacing="0" cellpadding="0"><tbody>';
 			           $.each(descriptions,function(key,value){
 			        	   description = value.split("：");
 			        	   if(key % 2 ==0){
 			        		   html += '<tr style="background-color: #ebebeb;">'+
-			        		           '<td style="height: 35px; border: 1px solid #ebebeb;"><p><span style="font-size: small; color: #262626;">'+description[0]+'</p></span></td>'+
-			        		           '<td style="height: 35px; border: 1px solid #ebebeb;"><p><span style="font-size: small; color: #262626;">'+description[1]+'</p></span></td>'+
+			        		           '<td style="height: 30px;width: 50%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+			        		           '<td style="height: 30px;width: 50%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
 			        		           '</tr>';
 			        	   }else{
 			        		   html += '<tr>'+
-	        		           '<td style="height: 35px; border: 1px solid #ebebeb;"><p><span style="font-size: small; color: #262626;">'+description[0]+'</p></span></td>'+
-	        		           '<td style="height: 35px; border: 1px solid #ebebeb;"><p><span style="font-size: small; color: #262626;">'+description[1]+'</p></span></td>'+
+	        		           '<td style="height: 30px;width: 50%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+	        		           '<td style="height: 30px;width: 50%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
 	        		           '</tr>';
 			        	   }
 			        	   
@@ -347,17 +349,7 @@ var  handleZClip = function(){
 	        });
 	        next();
 	    });
-		$("#copy_b").delay(250).queue(function(next){
-	        $(this).zclip({
-	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: $('#view').find('.product-page-options:eq(0)').find('span').text(),
-				afterCopy: function(){
-				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_b')).text('复制成功').fadeOut(2000);
-				}
-	        });
-	        next();
-	    });
+		
 		
 	}
 
