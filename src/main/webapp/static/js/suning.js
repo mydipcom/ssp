@@ -24,6 +24,7 @@ var Suning = function () {
 	var oTable;
 	var selected = [];
 	var imgs = [];
+	var data;
 	var proSort = false,netSort = false,disSort = false,sortType = 'promotionPrice',sort=false;
 	var handleTable = function () {				
 		var table=$('#suning_table');
@@ -79,7 +80,7 @@ var Suning = function () {
 		 
 		table.on('click', '#product_details',function(){
 			   imgs = [];
-			   var data = oTable.api().row($(this).parents('tr')).data();
+			   data = oTable.api().row($(this).parents('tr')).data();
 			   $('#view').find('.name').text(data.productName);
 	           $('#view').find('.price').find('strong').text("¥"+data.promotionPrice);
 	           $('#view').find('.price').find('span').text("¥"+data.netPrice);
@@ -94,7 +95,7 @@ var Suning = function () {
 	           $('#Description').html(html);
 	           $('#des_p').text(data.productParam);
 	           $('#view').find('.product-page-options:eq(0)').find('span').text(data.vendorName);
-	           $('#view').find('.product-page-options:eq(1)').find('.pull-left:eq(0)').find('span').text(data.partNumber);
+	           $('#view').find('.product-page-options:eq(1)').find('.pull-left:eq(0)').find('span').text(data.partNumber.substring(9));
 	           $('#view').find('.product-page-options:eq(1)').find('.pull-left:eq(1)').find('span').text(data.productCatagory);
 	           
 	           imgs=data.productImage.substring(0,data.productImage.length-1).split("#");
@@ -317,13 +318,13 @@ var  handleZClip = function(){
 			        	   description = value.split("：");
 			        	   if(key % 2 ==0){
 			        		   html += '<tr style="background-color: #ebebeb;">'+
-			        		           '<td style="height: 30px;width: 50%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
-			        		           '<td style="height: 30px;width: 50%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
+			        		           '<td style="height: 30px;width: 35%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+			        		           '<td style="height: 30px;width: 65%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
 			        		           '</tr>';
 			        	   }else{
 			        		   html += '<tr>'+
-	        		           '<td style="height: 30px;width: 50%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
-	        		           '<td style="height: 30px;width: 50%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
+	        		           '<td style="height: 30px;width: 35%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+	        		           '<td style="height: 30px;width: 65%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
 	        		           '</tr>';
 			        	   }
 			        	   
@@ -333,7 +334,7 @@ var  handleZClip = function(){
 				},
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
@@ -344,12 +345,22 @@ var  handleZClip = function(){
 				copy: $('.name').text(),
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
 	    });
-		
+		$("#copy_p").delay(250).queue(function(next){
+			$(this).zclip({
+	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
+				copy: 'SUN'+data.partNumber.substring(9),
+				afterCopy: function(){
+				   $('#msg').remove();
+				   $("<span id='msg'/>").insertAfter($('#copy_p')).text('复制成功').fadeOut(1000);
+				}
+	        });
+	        next();
+	    });
 		
 	}
 

@@ -295,7 +295,7 @@
 									</div>
 									<div class="col-md-6 col-sm-6">
 										<div class="price-availability-block clearfix">
-											<a href="" id="copy_n" class="copy">复制</a>
+											<button type="button" class="btn blue btn-sm" id="copy_n">复制名称</button>
 											<div class="name lead"></div>
 										</div>
 										<div class="price-availability-block clearfix">
@@ -307,28 +307,32 @@
                                          <div class="product-page-options">
 											<div class="pull-left">
 
-												<label class="control-label">Brand:</label> <span></span> <a
-													href="" id="copy_b" class="copy">复制</a>
+												<label class="control-label">Brand:</label> <span></span> 
 											</div>
 										</div>
 										<div class="product-page-options">
 											<div class="pull-left">
 												<label class="control-label">PID:</label> <span></span>
+												<button class="btn blue btn-sm" id="copy_p">复制ID</button> 
 											</div>
 											<div class="pull-left">
 												<label class="control-label">category:</label> <span></span>
 											</div>
 										</div>
 										<div class="product-other-images">
-											<button class="btn btn-primary" id="download_images">Download
+											<button class="btn blue btn-sm" id="download_images">Download
 												Images</button>
 										</div>
+										
+										<div class="product-other-images">
+											 <button class="btn blue btn-sm" id="copy_d">复制详情</button> 
+										</div>
 
-
+                                        
 									</div>
 
 									<div class="product-page-content">
-										<ul id="Tab" class="nav nav-tabs">
+									    <ul id="Tab" class="nav nav-tabs">
 											<li class="active"><a href="#editor_notes"
 												data-toggle="tab">EDITORS' NOTES</a></li>
 											<li><a href="#size_fit" data-toggle="tab">SIZE & FIT</a></li>

@@ -298,7 +298,8 @@
 									</div>
 									<div class="col-md-6 col-sm-6">
 									    <div class="price-availability-block clearfix">
-											<a href="" id="copy_n" class="copy">复制</a><div class="name lead"></div>
+											<button type="button" class="btn blue btn-sm" id="copy_n">复制名称</button>
+											<div class="name lead"></div>
 										</div>
 										<div class="price-availability-block clearfix">
 											<div class="price">
@@ -308,19 +309,19 @@
 										</div>
 										
 										<div class="description" >
-										    <a href="" id="copy_d" class="copy">复制</a>
-											<p></p>
+										   <button class="btn blue btn-sm" id="copy_d">复制详情</button>
+										   <p></p>
 										</div>
 										<div class="product-page-options">
 										    <div class="pull-left">
 											    
 												<label class="control-label">Brand:</label>
 											    <span></span>	
-											    <a href="" id="copy_b" class="copy">复制</a>
 											</div>
 										</div>
 										<div class="product-page-options">
 											<div class="pull-left">
+											    <button class="btn blue btn-sm" id="copy_d">复制ID</button>
 											    <label class="control-label">PID:</label> <span></span>
 											</div>
 											<div class="pull-left">
@@ -328,7 +329,9 @@
 											</div>
                                             
 										</div>
-                                       
+                                        
+                                            
+                                        
 
 									</div>
 								</div>

@@ -25,7 +25,10 @@ var rootURI = "/";
 var MrPorter = function() {
 	var oTable;
 	var selected = [];
-	var imgs = [];
+	var imgs;
+	var sizes;
+	var details;
+	var data;
 	var sort = false;
 	var handleTable = function() {
 		var table = $('#mr_table');
@@ -111,7 +114,7 @@ var MrPorter = function() {
 			imgs = [];
 		    sizes = [];
 		    details = [];
-			var data = oTable.api().row($(this).parents('tr')).data();
+			data = oTable.api().row($(this).parents('tr')).data();
 			$('#view').find('.name').text(data.pname);
 			$('#view').find('.price').find('strong').text("£"+data.price);
 			$('#editor_notes').find('p').text(data.editor_note);
@@ -286,13 +289,39 @@ var searchValidation = function() {
 		$("#copy_d").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>PRODUCT DETAILS:</b></span></p>'+
-				      '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+$('.description').find('p').text()+'.</span></p>',
+				copy: function(){
+					var html = '';
+					html +='<p style="text-align: justify;"><span style="color: #000000;"><strong>'+
+					       '<span style="font-size: small; font-family: arial, helvetica, sans-serif;">EDITORS\' NOTES：</span></strong></span></p>'+
+					       '<div><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;"></span>'+
+					       '<div style="text-align: justify;"><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+data.editor_note+'</span></div>';
+					if(data.size_fit.length != 0){
+						 html +='<div style="text-align: justify;"></div><div style="text-align: justify;"></div><div style="text-align: justify;"></div>'+
+						       '<div style="text-align: justify;"><span style="color: #000000;"><strong>'+
+							   '<span style="font-size: small; font-family: arial, helvetica, sans-serif;">SIZE &amp; FIT：</span></strong></span></div>'+
+						       '<div style="text-align: justify;"></div><div><ul style="text-align: justify;">';
+						       
+						$.each(sizes, function(i, value) {
+							html +='<li><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+value+'</span></li>';
+						});
+						html +='</ul>';
+					}
+					if(data.details_care.length != 0){
+						
+						html +='<p></p><p><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+
+							  '<strong>DETAILS &amp; CARE：</strong><br /><span></span><br /></span></p><ul>';
+					    $.each(details, function(i, value) {
+					    	html +='<li><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+value+'</span></li>';
+						});
+						html +='</ul>';
+					}
+					html +='<p></p><p style="text-align: justify;"><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;">'+
+					       '<strong>BRAND:&nbsp;</strong></span>&nbsp;'+data.pbrand+'</p>';
+					return html;
+				},
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
@@ -303,20 +332,18 @@ var searchValidation = function() {
 				copy: $('.name').text(),
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
 	    });
-		$("#copy_b").delay(200).queue(function(next){
+		$("#copy_p").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+
-				      '<span style="color: #000000;"><strong>BRAND:</strong></span> '+$('.product-page-options:eq(0)').find('.pull-left:eq(0)').find('span').text()+'</span></p>',
+				copy: data.prodid,
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_b')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_p')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();

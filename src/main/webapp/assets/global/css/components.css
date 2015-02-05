@@ -7,7 +7,7 @@ General reset
 /* Set default body */
 body {
   color: black;
-  font-family: arial, helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   padding: 0px !important;
   margin: 0px !important;
   font-size: 13px;
@@ -293,7 +293,7 @@ Utilities
 }
 
 .text-align-reverse {
-  text-align: right;
+   text-align: lift;
 }
 
 /* Margin and padding utilities */

@@ -27,6 +27,7 @@ var NapAPorter = function() {
 	var selected = [];
 	var imgs = [];
 	var sort = false;
+	var data;
 	var handleTable = function() {
 		var table = $('#nap_a_porter_table');
 		oTable = table
@@ -104,7 +105,7 @@ var NapAPorter = function() {
 
 		table.on('click', '#product_details', function() {
 		    imgs = [];
-			var data = oTable.api().row($(this).parents('tr')).data();
+			data = oTable.api().row($(this).parents('tr')).data();
 			$('#view').find('.name').text(data.name);
 			$('#view').find('.price').find('strong').text("$"+data.price);
 			$('#view').find('.description').find('p').text(data.description);
@@ -261,10 +262,13 @@ var searchValidation = function() {
 				copy: '<p style="text-align: justify;">'+
 				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>PRODUCT DETAILS:</b></span>'+
 				      '</p><p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+$('.description').find('p').text()+'.</span></p>',
+				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+data.description+'.</span></p>'+
+				      '<p style="text-align: justify;">'+
+				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+
+				      '<span style="color: #000000;"><strong>BRAND:&nbsp;</strong></span> '+data.brand+'</span></p>',
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
@@ -272,31 +276,27 @@ var searchValidation = function() {
 		$("#copy_n").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: $('.name').text(),
+				copy: data.name,
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
 	    });
-		$("#copy_b").delay(200).queue(function(next){
+		$("#copy_p").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+
-				      '<span style="color: #000000;"><strong>BRAND:</strong></span> '+$('.product-page-options:eq(0)').find('.pull-left:eq(0)').find('span').text()+'</span></p>',
+				copy: data.pid,
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_b')).text('复制成功').fadeOut(2000);
+				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();
 	    });
 		
-		
-		
-	}
+}
 	
 	var Downer = (function(files){
 		var h5Down = !/Trident|MSIE/.test(navigator.userAgent);

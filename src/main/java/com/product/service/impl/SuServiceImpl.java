@@ -71,6 +71,10 @@ public class SuServiceImpl implements SuService{
 		    	criterions.add(Restrictions.le("disPrice", Float.parseFloat(jsonObject.getString("disprice_to"))));      
 		    }
 			
+			if(jsonObject.getString("productName") != null && !jsonObject.getString("productName").isEmpty()){
+				criterions.add(Restrictions.ilike("productName", jsonObject.getString("productName"), MatchMode.ANYWHERE));
+			}
+			
 			Criterion [] criterion = new Criterion[criterions.size()];
 			for(int i=0;i<criterions.size();i++){
 				criterion[i]=criterions.get(i);
