@@ -304,63 +304,71 @@ var Suning = function () {
     };
     
 var  handleZClip = function(){
-		
-		$("#copy_d").delay(250).queue(function(next){
-	        $(this).zclip({
-	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy:  function(){
-					   var descriptions = $('#des_p').text().split("#*#");
-					   var description = [];
-					   var html = '<p style="text-align: justify;">'+
-					               '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>商品详情:</b></span></p>'+
-					                '<table style="width: 954px;text-align: center;" border="0" cellspacing="0" cellpadding="0"><tbody>';
-			           $.each(descriptions,function(key,value){
-			        	   description = value.split("：");
-			        	   if(key % 2 ==0){
-			        		   html += '<tr style="background-color: #ebebeb;">'+
-			        		           '<td style="height: 30px;width: 35%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
-			        		           '<td style="height: 30px;width: 65%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
+	       $('#copy_n').zclip('remove');
+	       $('#copy_p').zclip('remove');
+	       $('#copy_d').zclip('remove');
+           $("#copy_n").delay(50).queue(function(next){
+        	   
+				$(this).zclip({
+		        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
+					copy: $('.name').text(),
+					afterCopy: function(){
+					   $('#msg').remove();
+					   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
+					}
+		        });
+		        next();
+		    });
+		    
+			
+			$("#copy_p").delay(100).queue(function(next){
+				 
+				$(this).zclip({
+		        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
+					copy: 'SUN'+data.partNumber.substring(9),
+					afterCopy: function(){
+					   $('#msg').remove();
+					   $("<span id='msg'/>").insertAfter($('#copy_p')).text('复制成功').fadeOut(1000);
+					}
+		        });
+		        next();
+		    });
+			$("#copy_d").delay(150).queue(function(next){
+				 
+				 $(this).zclip({
+			        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
+						copy:  function(){
+							   var descriptions = $('#des_p').text().split("#*#");
+							   var description = [];
+							   var html = '<p style="text-align: justify;">'+
+							               '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>商品详情:</b></span></p>'+
+							                '<table style="width: 954px;text-align: center;" border="0" cellspacing="0" cellpadding="0"><tbody>';
+					           $.each(descriptions,function(key,value){
+					        	   description = value.split("：");
+					        	   if(key % 2 ==0){
+					        		   html += '<tr style="background-color: #ebebeb;">'+
+					        		           '<td style="height: 30px;width: 35%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+					        		           '<td style="height: 30px;width: 65%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
+					        		           '</tr>';
+					        	   }else{
+					        		   html += '<tr>'+
+			        		           '<td style="height: 30px;width: 35%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
+			        		           '<td style="height: 30px;width: 65%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
 			        		           '</tr>';
-			        	   }else{
-			        		   html += '<tr>'+
-	        		           '<td style="height: 30px;width: 35%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[0]+'</span></td>'+
-	        		           '<td style="height: 30px;width: 65%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+description[1]+'</span></td>'+
-	        		           '</tr>';
-			        	   }
-			        	   
-			           });
-			           html +='</tbody></table>';
-			           return html;
-				},
-				afterCopy: function(){
-				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
-				}
-	        });
-	        next();
-	    });
-		$("#copy_n").delay(250).queue(function(next){
-			$(this).zclip({
-	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: $('.name').text(),
-				afterCopy: function(){
-				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
-				}
-	        });
-	        next();
-	    });
-		$("#copy_p").delay(250).queue(function(next){
-			$(this).zclip({
-	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: 'SUN'+data.partNumber.substring(9),
-				afterCopy: function(){
-				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_p')).text('复制成功').fadeOut(1000);
-				}
-	        });
-	        next();
-	    });
+					        	   }
+					        	   
+					           });
+					           html +='</tbody></table>';
+					           return html;
+						},
+						afterCopy: function(){
+						   $('#msg').remove();
+						   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
+						}
+			        });
+			        next();
+			    });
+		
 		
 	}
 

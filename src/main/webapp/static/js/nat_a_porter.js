@@ -255,7 +255,9 @@ var searchValidation = function() {
 	}
 	
 	var  handleZClip = function(){
-		
+		$('#copy_n').zclip('remove');
+	    $('#copy_p').zclip('remove');
+	    $('#copy_d').zclip('remove');
 		$("#copy_d").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
@@ -290,7 +292,7 @@ var searchValidation = function() {
 				copy: data.pid,
 				afterCopy: function(){
 				   $('#msg').remove();
-				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
+				   $("<span id='msg'/>").insertAfter($('#copy_p')).text('复制成功').fadeOut(1000);
 				}
 	        });
 	        next();

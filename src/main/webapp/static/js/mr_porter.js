@@ -285,7 +285,9 @@ var searchValidation = function() {
 	}
 	
 	var  handleZClip = function(){
-		
+		$('#copy_n').zclip('remove');
+	    $('#copy_p').zclip('remove');
+	    $('#copy_d').zclip('remove');
 		$("#copy_d").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
