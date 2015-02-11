@@ -50,18 +50,16 @@ import com.product.service.SuService;
  */
 @Controller
 @RequestMapping("/product")
-public class ProductController extends BaseController {
+public class SuProductController extends BaseController {
 
-	private Logger logger = Logger.getLogger(ProductController.class);
+	private Logger logger = Logger.getLogger(SuProductController.class);
 	
-	@Autowired
-	private NapAPorterService napAPorterService;
+	
 	
 	@Autowired
 	private SuService suService;
 	
-	@Autowired
-	private MrPorterService mrPorterService;
+	
 	
 	@RequestMapping(value="suning",method=RequestMethod.GET)
 	public ModelAndView suning(HttpServletRequest request){
@@ -79,33 +77,9 @@ public class ProductController extends BaseController {
 		
 	}
 	
-	@RequestMapping(value="nat_a_porter",method=RequestMethod.GET)
-	public ModelAndView natAPorter(HttpServletRequest request){
-		List<String> category =napAPorterService.getByGroupBy("category");
-		List<String> brand =napAPorterService.getByGroupBy("brand");
-	    ModelAndView mav=new ModelAndView();
-		mav.addObject("category",category);
-		mav.addObject("brand",brand);
-		long createtime = napAPorterService.getUpdateTime();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String time = sdf.format(new Date(createtime));
-		mav.addObject("createtime",time);
-		mav.setViewName("product/nat_a_porter");
-		return mav;
-	}
 	
-	@RequestMapping(value="nat_a_porter_list" ,method=RequestMethod.GET)
-	@ResponseBody
-	public String natAPorterList(HttpServletRequest request,DataTableParamter dtp){
-		PagingData pagingData =napAPorterService.loadNapAPorterList(dtp);
-		Object objects[] = pagingData.getAaData();
-		if(objects == null){
-			objects = new Object[]{};
-			pagingData.setAaData(objects);
-		}
-		String respString =JSON.toJSONString(pagingData);
-		return respString;
-	}
+	
+	
 	
 	@RequestMapping(value="suning_list" ,method=RequestMethod.GET)
 	@ResponseBody
@@ -145,33 +119,6 @@ public class ProductController extends BaseController {
 			resp.put("category", cList);
 		}
 		return JSON.toJSONString(resp);
-	}
-	
-	@RequestMapping(value="mr",method=RequestMethod.GET)
-	public ModelAndView mr(HttpServletRequest request){
-		List<String> category =mrPorterService.getByGroupBy("pcat");
-		List<String> brand =mrPorterService.getByGroupBy("pbrand");
-	    ModelAndView mav=new ModelAndView();
-		mav.addObject("category",category);
-		mav.addObject("brand",brand);
-		long createtime = mrPorterService.getUpdateTime();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String time = sdf.format(new Date(createtime));
-		mav.addObject("createtime",time);
-		mav.setViewName("product/mr");
-		return mav;
-	}
-	
-	@RequestMapping(value="mr_list",method=RequestMethod.GET)
-	@ResponseBody
-	public String mr_list(HttpServletRequest request,DataTableParamter dtp){
-		PagingData pagingData = mrPorterService.loadMrPorterList(dtp);
-		Object [] obj = null;
-		if(pagingData.getAaData()==null){
-			obj = new Object[]{};
-			pagingData.setAaData(obj);
-		}
-		return JSON.toJSONString(pagingData);
 	}
 	
 }

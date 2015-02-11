@@ -143,7 +143,11 @@
 							<i class="icon-direction"></i>
 							MR PORTER</a>
 						</li>
-						
+						<li>
+							<a href="${pageContext.request.contextPath}/product/milan">
+							<i class="icon-direction"></i>
+							MILAN STATION</a>
+						</li>
 					</ul>
 				</li>
 				

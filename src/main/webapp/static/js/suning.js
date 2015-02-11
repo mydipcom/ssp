@@ -26,7 +26,7 @@ var Suning = function () {
 	var imgs = [];
 	var data;
 	var proSort = false,netSort = false,disSort = false,sortType = 'promotionPrice',sort=false;
-	var handleTable = function () {				
+    var handleTable = function () {				
 		var table=$('#suning_table');
 		 oTable = table.dataTable({
 			"lengthChange":false,
@@ -338,7 +338,7 @@ var  handleZClip = function(){
 				 $(this).zclip({
 			        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
 						copy:  function(){
-							   var descriptions = $('#des_p').text().split("#*#");
+							   var descriptions = data.productParam.split("#*#");
 							   var description = [];
 							   var html = '<p style="text-align: justify;">'+
 							               '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>商品详情:</b></span></p>'+

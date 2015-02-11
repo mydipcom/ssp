@@ -22,14 +22,14 @@
 })(jQuery);
 
 var rootURI = "/";
-var NapAPorter = function() {
+var MiLan = function() {
 	var oTable;
 	var selected = [];
-	var imgs = [];
-	var sort = false;
+	var imgs;
 	var data;
-	var handleTable = function() {
-		var table = $('#nap_a_porter_table');
+	var mktPriceSort = false,priceSort = false,disSort = false,sortType = 'mktprice',sort=false;
+		var handleTable = function() {
+		var table = $('#milan_table');
 		oTable = table
 				.dataTable({
 					"lengthChange" : false,
@@ -51,27 +51,32 @@ var NapAPorter = function() {
 					} ],
 					"columns" : [
                            {
-	                       title : "Category",
+	                       title : "分类",
 	                       data : "category"
 	                       
                             },
 
 							
 							{
-								title : "Name",
-								data : "name"
+								title : "名称",
+								data : "pname"
 							},
 							{
-								title : "Brand",
+								title : "品牌",
 								data : "brand"
 								
 							},
-							
-
 							{
-								title : "Price",
+								title : "米兰价",
 								'render' : function(data, type, row) {
-									return "$" + row.price;
+									return "¥" + row.mktprice;
+								},
+								
+							},
+							{
+								title : "原价",
+								'render' : function(data, type, row) {
+									return "¥" + row.price;
 								},
 								
 							},{
@@ -92,23 +97,28 @@ var NapAPorter = function() {
 							} ],
 					"serverSide" : true,
 					"serverMethod" : "GET",
-					"ajaxSource" : rootURI + "/product/nat_a_porter_list?rand="
+					"ajaxSource" : rootURI + "product/milan_list?rand="
 							+ Math.random(),
 					"fnDrawCallback" : function(oSetting) {
 						selected = [];
 					},
 					"fnServerParams": function ( aoData ) {
-				           aoData.push( { "name": "sSort", "value": sort } );
+						 aoData.push( { "name": "sSort", "value": sort },{ "name": "sSortType", "value": sortType });
 					}
 
 				});
 
 		table.on('click', '#product_details', function() {
-		    imgs = [];
+			
+			$('#Tab').children().removeClass('active');
+			$('#Tab').children().first().addClass('active');
+			$('#TabContent').children().removeClass('in active');
+			$('#TabContent').children().first().addClass('in active');
+			imgs = [];
+		    
 			data = oTable.api().row($(this).parents('tr')).data();
-			$('#view').find('.name').text(data.name);
-			$('#view').find('.price').find('strong').text("$"+data.price);
-			$('#view').find('.description').find('p').text(data.description);
+			$('#view').find('.name').text(data.pname);
+			$('#view').find('.price').find('strong').text("¥"+data.mktprice);
 			$('#view').find('.product-page-options:eq(0)').find('span').text(
 					data.brand);
 			$('#view').find('.product-page-options:eq(1)').find(
@@ -116,13 +126,24 @@ var NapAPorter = function() {
 			$('#view').find('.product-page-options:eq(1)').find(
 					'.pull-left:eq(1)').find('span').text(data.category);
 
-			imgs = data.image.substring(0, data.image.length - 1).split("#");
+			imgs = data.image.split("#");
 			var str = '<ul class="aa">';
 			$.each(imgs, function(i, value) {
 				str += '<li class="aa"><a target="_blank"><img src="' + value
 						+ '"></a></li>'
 			});
 			str += '</ul>';
+			$('#introdition').find('p').text(data.introduction);
+			 var details = data.details.split("#*#");
+	           var detail = [];
+	           var html = '<tbody>';
+	           $.each(details,function(key,value){
+	        	   detail = value.split("：");
+	        	   html += '<tr><td>'+detail[0]+'</td><td>'+detail[1]+'</td></tr>'
+	           });
+	           html +='</tbody>'
+	           $('#details').html(html);
+			
 			$('#view').find('.slider').empty();
 			$('#view .slider').append(str);
 			$(".slider").yxMobileSlider({
@@ -133,8 +154,6 @@ var NapAPorter = function() {
 			handleZClip();
 			$(window).trigger("resize");
 		});
-
-		
 
 		$('#category').on('change', function() {
 			var jsonData = $("#searchForm").serializeJson();
@@ -197,11 +216,18 @@ var searchValidation = function() {
          focusInvalid: false, // do not focus the last invalid input
          ignore: "",  // validate all fields including form hidden input                
          rules: {
-         	price_from:{
+        	 price_from:{
          		number:true
          		
          	},
          	price_to:{
+         		number:true,
+         	},
+         	disprice_from:{
+         		number:true
+         		
+         	},
+         	disprice_to:{
          		number:true,
          	}
          },
@@ -229,24 +255,7 @@ var searchValidation = function() {
          }
      });
  };
-	// 提示信息处理方法（是在页面中指定位置显示提示信息的方式）
-	var handleAlerts = function(msg, msgType, position) {
-		Metronic.alert({
-			container : position, // alerts parent container(by default placed
-									// after the page breadcrumbs)
-			place : "prepent", // append or prepent in container
-			type : msgType, // alert's type (success, danger, warning, info)
-			message : msg, // alert's message
-			close : true, // make alert closable
-			reset : true, // close all previouse alerts first
-			focus : false, // auto scroll to the alert after shown
-			closeInSeconds : 10, // auto close after defined seconds, 0 never
-									// close
-			icon : "warning" // put icon before the message, use the font
-								// Awesone icon (fa-[*])
-		});
-
-	}
+	
 	
 	var  handleZClip = function(){
 		$('#copy_n').zclip('remove');
@@ -255,13 +264,39 @@ var searchValidation = function() {
 		$("#copy_d").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>PRODUCT DETAILS:</b></span>'+
-				      '</p><p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+data.description+'.</span></p>'+
-				      '<p style="text-align: justify;">'+
-				      '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+
-				      '<span style="color: #000000;"><strong>BRAND:&nbsp;</strong></span> '+data.brand+'</span></p>',
+				copy: function(){
+					  var html = '';
+					  var details = data.details.split("#*#");
+					   var detail = [];
+					   html += '<p style="text-align: justify;">'+
+					               '<span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;"><b>商品详情:</b></span></p>'+
+					                '<table style="width: 954px;text-align: center;" border="0" cellspacing="0" cellpadding="0"><tbody>';
+			           $.each(details,function(key,value){
+			        	   detail = value.split("：");
+			        	   if(key % 2 ==0){
+			        		   html += '<tr style="background-color: #ebebeb;">'+
+			        		           '<td style="height: 30px;width: 35%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+detail[0]+'</span></td>'+
+			        		           '<td style="height: 30px;width: 65%; line-height:30px;border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+detail[1]+'</span></td>'+
+			        		           '</tr>';
+			        	   }else{
+			        		   html += '<tr>'+
+	        		           '<td style="height: 30px;width: 35%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+detail[0]+'</span></td>'+
+	        		           '<td style="height: 30px;width: 65%;line-height:30px; border: 1px solid #ebebeb;text-align: left;"><span style="font-size: small; color: #262626;">'+detail[1]+'</span></td>'+
+	        		           '</tr>';
+			        	   }
+			        	   
+			           });
+			        html +='</tbody></table>';
+			        
+					html +='<p></p><p style="text-align: justify;"><span style="color: #000000;"><strong>'+
+					       '<span style="font-size: small; font-family: arial, helvetica, sans-serif;">商品简介</span></strong></span></p>'+
+					       '<div><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;"></span>'+
+					       '<div style="text-align: justify;"><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #262626;">'+data.introduction+'</span></div>';
+					
+					html +='<p></p><p style="text-align: justify;"><span style="font-size: small; font-family: arial, helvetica, sans-serif; color: #000000;">'+
+					       '<strong>品牌:&nbsp;</strong></span>&nbsp;'+data.brand+'</p>';
+					return html;
+				},
 				afterCopy: function(){
 				   $('#msg').remove();
 				   $("<span id='msg'/>").insertAfter($('#copy_d')).text('复制成功').fadeOut(1000);
@@ -272,7 +307,7 @@ var searchValidation = function() {
 		$("#copy_n").delay(200).queue(function(next){
 	        $(this).zclip({
 	        	path: rootURI+'/assets/global/plugins/zclip/ZeroClipboard.swf',
-				copy: data.name,
+				copy: $('.name').text(),
 				afterCopy: function(){
 				   $('#msg').remove();
 				   $("<span id='msg'/>").insertAfter($('#copy_n')).text('复制成功').fadeOut(1000);
@@ -292,7 +327,9 @@ var searchValidation = function() {
 	        next();
 	    });
 		
-}
+		
+		
+	}
 	
 	var Downer = (function(files){
 		var h5Down = !/Trident|MSIE/.test(navigator.userAgent);
@@ -391,22 +428,69 @@ var searchValidation = function() {
 	
 	var priceSort = function(){
 		
-		$('#price_sort').on('click',function(){
-			if(!sort){
+		$('#mktprice_sort').on('click',function(){
+			if(!mktPriceSort){
 				$(this).find('i').removeClass('fa-arrow-down');
 				$(this).find('i').addClass('fa-arrow-up');
-				sort=true;
+				mktPriceSort=true;
 			}else{
 				$(this).find('i').removeClass('fa-arrow-up');
 				$(this).find('i').addClass('fa-arrow-down');
-				sort=false;
+				mktPriceSort=false;
 			}
+			sortType = 'mktprice';
+			sort=mktPriceSort;
+			oTable.fnFilter();
+		});
+		$('#price_sort').on('click',function(){
+			if(!priceSort){
+				$(this).find('i').removeClass('fa-arrow-down');
+				$(this).find('i').addClass('fa-arrow-up');
+				priceSort=true;
+			}else{
+				$(this).find('i').removeClass('fa-arrow-up');
+				$(this).find('i').addClass('fa-arrow-down');
+				priceSort=false;
+			}
+			sortType = 'price';
+			sort=priceSort;
+			oTable.fnFilter();
+		});
+		$('#disprice_sort').on('click',function(){
+			if(!disSort){
+				$(this).find('i').removeClass('fa-arrow-down');
+				$(this).find('i').addClass('fa-arrow-up');
+				disSort=true;
+			}else{
+				$(this).find('i').removeClass('fa-arrow-up');
+				$(this).find('i').addClass('fa-arrow-down');
+				disSort=false;
+			}
+			sortType = 'discount';
+			sort=disSort;
 			oTable.fnFilter();
 		});
 		
 	}
 	
+	// 提示信息处理方法（是在页面中指定位置显示提示信息的方式）
+	var handleAlerts = function(msg, msgType, position) {
+		Metronic.alert({
+			container : position, // alerts parent container(by default placed
+									// after the page breadcrumbs)
+			place : "prepent", // append or prepent in container
+			type : msgType, // alert's type (success, danger, warning, info)
+			message : msg, // alert's message
+			close : true, // make alert closable
+			reset : true, // close all previouse alerts first
+			focus : false, // auto scroll to the alert after shown
+			closeInSeconds : 10, // auto close after defined seconds, 0 never
+									// close
+			icon : "warning" // put icon before the message, use the font
+								// Awesone icon (fa-[*])
+		});
 
+	}
 	return {
 		// main function to initiate the module
 		init : function(rootPath) {

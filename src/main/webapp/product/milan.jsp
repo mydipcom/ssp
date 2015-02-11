@@ -11,7 +11,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8" />
-<title>MR PORTER</title>
+<title>MILAN STATION</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
@@ -49,12 +49,12 @@
 <link
 	href="../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"
 	rel="stylesheet" type="text/css" />
-<link
+ <link
 	href="../assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css"
 	rel="stylesheet" type="text/css" />
 <link
 	href="../assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css"
-	rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" /> 
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN PAGE STYLES -->
 
@@ -69,7 +69,7 @@
 <link href="../assets/global/css/components.css" rel="stylesheet"
 	type="text/css" />
 <link href="../assets/global/css/plugins.css" rel="stylesheet"
-	type="text/css" />
+	type="text/css" /> 
 <link href="../assets/admin/layout/css/layout.css" rel="stylesheet"
 	type="text/css" />
 <link href="../assets/admin/layout/css/themes/darkblue.css"
@@ -135,16 +135,15 @@
 								href="${pageContext.request.contextPath}/product/nat_a_porter">
 									<i class="icon-direction"></i> NET-A-PORTER
 							</a></li>
-							<li class="active"><a
+							<li ><a
 								href="${pageContext.request.contextPath}/product/mr"> <i
 									class="icon-direction"></i> MR PORTER
 							</a></li>
-							<li>
+                            <li class="active">
 							<a href="${pageContext.request.contextPath}/product/milan">
 							<i class="icon-direction"></i>
 							MILAN STATION</a>
 						    </li>
-
 						</ul></li>
 
 				</ul>
@@ -162,9 +161,9 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="col-md-3 control-label">Category</label>
+									<label class="col-md-3 control-label">分类</label>
 									<div class="col-md-9">
-										<select name="pcat" class="form-control bs-select"
+										<select name="category" class="form-control bs-select"
 											id="category" data-size="10">
 											<option value="">ALL</option>
 											<c:forEach var="cate" items="${category}">
@@ -176,9 +175,9 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="col-md-3 control-label">Brand</label>
+									<label class="col-md-3 control-label">品牌</label>
 									<div class="col-md-9">
-										<select name="pbrand" class="form-control bs-select"
+										<select name="brand" class="form-control bs-select"
 											data-size="10" id="brand">
 											<option value="">ALL</option>
 											<c:forEach var="brand" items="${brand}">
@@ -192,10 +191,20 @@
 
 						</div>
 						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-3 control-label">名称</label>
+									<div class="col-md-9">
+										<input name="pname" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="col-md-3 control-label">Price</label>
+									<label class="col-md-3 control-label">米兰价</label>
 									<div class="col-md-9">
 										<div class="input-group input-large">
 											<input type="text" class="form-control" name="price_from">
@@ -207,12 +216,18 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="col-md-3 control-label">Name</label>
-									<div class="col-md-9">
-										<input name="pname" type="text" class="form-control">
+									<label class="control-label col-md-2">差价区间</label>
+									<div class="col-md-10">
+										<div class="input-group input-large">
+											<input type="text" class="form-control" name="disprice_from">
+											<span class="input-group-addon"> to </span> <input
+												type="text" class="form-control" name="disprice_to">
+										</div>
+
 									</div>
 								</div>
 							</div>
+							
 						</div>
 						<div class="row">
 							<div class="col-md-6">
@@ -248,11 +263,12 @@
 						<div class="portlet  box green">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-edit"></i>MR PORTER
+									<i class="fa fa-edit"></i>MILAN STATION
 								</div>
 								<div class="actions">
-									<a class="btn btn-default btn-sm" id="price_sort">Price<i
-										class="fa fa-arrow-down"></i></a>
+									 <a class="btn btn-default btn-sm" id="mktprice_sort">米兰价<i class="fa fa-arrow-down"></i></a>
+								    <a class="btn btn-default btn-sm" id="price_sort">原价<i class="fa fa-arrow-down"></i></a>
+								    <a class="btn btn-default btn-sm" id="disprice_sort">差价<i class="fa fa-arrow-down"></i></a>
 									<div class="btn-group">
 
 										<a class="btn default" href="#" data-toggle="dropdown">
@@ -260,12 +276,13 @@
 										</a>
 										<div id="column_toggler"
 											class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-											<label><input type="checkbox" checked data-column="0">PID</label>
-											<label><input type="checkbox" checked data-column="1">Name</label>
-											<label><input type="checkbox" checked data-column="2">Brand</label>
-											<label><input type="checkbox" checked data-column="3">Category</label>
+											<label><input type="checkbox" checked data-column="0">分类</label>
+											<label><input type="checkbox" checked data-column="1">名称</label>
+											<label><input type="checkbox" checked data-column="2">品牌</label>
+											<label><input type="checkbox" checked data-column="3">米兰价</label>
+											<label><input type="checkbox" checked data-column="4">原价</label>
+											<label><input type="checkbox" checked data-column="4">PID</label>
 											<label><input type="checkbox" checked data-column="4">Url</label>
-											<label><input type="checkbox" checked data-column="4">Price</label>
 											<label><input type="checkbox" checked data-column="4">Action</label>
 										</div>
 									</div>
@@ -273,17 +290,17 @@
 							</div>
 							<div class="portlet-body">
 								<table class="table table-striped table-hover table-bordered"
-									id="mr_table">
+									id="milan_table">
 								</table>
 							</div>
 						</div>
 						<!-- END EXAMPLE TABLE PORTLET-->
 					</div>
 				</div>
+                 
 
 
-
-
+                
 
 				<div class="modal" id="view" tabindex="-1" data-width="760">
 					<div class="modal-body">
@@ -330,7 +347,8 @@
 										</div>
 										
 										<div class="product-other-images">
-											 <button class="btn blue btn-sm" id="copy_d">复制详情</button> 
+											 <button class="btn blue btn-sm" id="copy_d">复制详情</button>
+											 
 										</div>
 
                                         
@@ -338,23 +356,22 @@
 
 									<div class="product-page-content">
 									    <ul id="Tab" class="nav nav-tabs">
-											<li class="active"><a href="#editor_notes"
-												data-toggle="tab">EDITORS' NOTES</a></li>
-											<li><a href="#size_fit" data-toggle="tab">SIZE & FIT</a></li>
-											<li><a href="#details_care" data-toggle="tab">DETAILS & CARE</a></li>
+											<li class="active"><a href="#detail"
+												data-toggle="tab">商品详情</a></li>
+											<li><a href="#introdition" data-toggle="tab">商品简介</a></li>
+											
 										</ul>
 										<div id="TabContent" class="tab-content">
-											<div class="tab-pane fade in active" id="editor_notes">
-												<p></p>
+											<div class="tab-pane fade in active" id="detail">
+												<table class="table table-bordered table-hover" id="details">
+														
+												</table>
 											</div>
-											<div class="tab-pane fade" id="size_fit">
-											    
+											<div class="tab-pane fade" id="introdition">
+											    <p></p>
 											    
 											</div>
-											<div class="tab-pane fade " id="details_care">
-											    
-											    
-										   </div>
+											
 										</div>
 									</div>
 								</div>
@@ -366,8 +383,10 @@
 						</div>
 					</div>
 				</div>
-
-
+               
+                
+                 
+                 
 			</div>
 		</div>
 		<!-- END CONTENT -->
@@ -424,12 +443,12 @@
 	<script
 		src="../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"
 		type="text/javascript"></script>
-	<script
+	 <script
 		src="../assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"
 		type="text/javascript"></script>
 	<script
 		src="../assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js"
-		type="text/javascript"></script>
+		type="text/javascript"></script> 
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 	<script src="../assets/global/scripts/metronic.js"
@@ -441,14 +460,14 @@
 	<script
 		src="../assets/global/plugins/ion.rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 	<script type="text/javascript" src="../static/js/yxMobileSlider.js"></script>
-	<script src="../static/js/mr_porter.js" type="text/javascript"></script>
+	<script src="../static/js/milan.js" type="text/javascript"></script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 	<script>
 		jQuery(document).ready(function() {
 			Metronic.init(); // init metronic core componets
 			Layout.init(); // init layout
 			Demo.init(); // init demo features
-			MrPorter.init("<c:url value="/"/>");
+			MiLan.init("<c:url value="/"/>");
 
 		});
 	</script>

@@ -281,8 +281,8 @@ Bootstrap Modal
 }
 
 .modal-scrollable {
-  overflow: hidden !important;
-}
+  overflow: auto !important;
+} 
 
 /***
 Bootstrap Select

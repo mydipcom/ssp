@@ -164,13 +164,7 @@ var MrPorter = function() {
 			$(window).trigger("resize");
 		});
 
-		// 搜索表单提交操作
-		$("#searchForm").on("submit", function(event) {
-			var jsonData = $(this).serializeJson();
-			var jsonDataStr = JSON.stringify(jsonData);
-			oTable.fnFilter(jsonDataStr);
-			return false;
-		});
+		
 
 		$('#category').on('change', function() {
 			var jsonData = $("#searchForm").serializeJson();
