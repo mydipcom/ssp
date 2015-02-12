@@ -67,10 +67,21 @@ var MiLan = function() {
 								
 							},
 							{
+								title : "等级",
+								'render' : function(data, type, row) {
+									if(row.grade == 1){
+										return "全新";
+									}else{
+										return "二手";
+									}
+								}
+								
+							},
+							{
 								title : "米兰价",
 								'render' : function(data, type, row) {
 									return "¥" + row.mktprice;
-								},
+								}
 								
 							},
 							{
@@ -168,7 +179,14 @@ var MiLan = function() {
 			oTable.fnFilter(jsonDataStr);
 			return false;
 		});
-
+        
+		$('input:radio[name=grade]').on('change',function(){
+			var jsonData = $("#searchForm").serializeJson();
+			var jsonDataStr = JSON.stringify(jsonData);
+			oTable.fnFilter(jsonDataStr);
+			return false;
+		});
+		
 		/* handle show/hide columns */
 		var tableColumnToggler = $('#column_toggler');
 		$('input[type="checkbox"]', tableColumnToggler).change(function() {

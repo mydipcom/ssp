@@ -29,6 +29,8 @@ public class MiLanProduct {
 	
 	private int stock;
 	
+	private int grade;
+	
 	private String details;
 	
 	private String introduction;
@@ -122,7 +124,15 @@ public class MiLanProduct {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+    
+	public int getGrade() {
+		return grade;
+	}
 
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	
 	public String getDetails() {
 		return details;
 	}

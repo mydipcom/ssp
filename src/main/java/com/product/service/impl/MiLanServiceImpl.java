@@ -58,7 +58,10 @@ public class MiLanServiceImpl implements MiLanService{
 		    }else if(jsonObject.getString("disprice_to")!=null && !jsonObject.getString("disprice_to").isEmpty()){
 		    	criterions.add(Restrictions.le("discount", Float.parseFloat(jsonObject.getString("disprice_to"))));      
 		    }
-			
+			if(jsonObject.getInteger("grade") != null){
+				criterions.add(Restrictions.eq("grade", jsonObject.getInteger("grade")));
+			}
+			criterions.add(Restrictions.eq("stock", 1));
 			Criterion [] criterion = new Criterion[criterions.size()];
 			for(int i=0;i<criterions.size();i++){
 				criterion[i]=criterions.get(i);
@@ -68,7 +71,7 @@ public class MiLanServiceImpl implements MiLanService{
 			
 		}
 		
-		    return miLanDao.findPage(dtp.getsSortType(), dtp.issSort(), dtp.getiDisplayStart(), dtp.getiDisplayLength());
+		    return miLanDao.findPage(dtp.getsSortType(), dtp.issSort(),Restrictions.eq("stock", 1), dtp.getiDisplayStart(), dtp.getiDisplayLength());
 	}
 
 	public List<String> getByGroupBy(String value) {

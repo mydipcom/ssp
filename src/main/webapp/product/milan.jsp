@@ -199,6 +199,27 @@
 									</div>
 								</div>
 							</div>
+							 <div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label col-md-3">店铺类型</label>
+									<div class="col-md-9">
+										 <div class="radio-list">
+											<label class="radio-inline"> <input type="radio"
+												name="grade" value="" checked />所有
+											</label> <label class="radio-inline"> <input type="radio"
+												name="grade" value="1" />全新
+											</label> <label class="radio-inline"> <input type="radio"
+												name="grade" value="0" />二手
+											</label>
+
+										</div> 
+										
+									</div>
+								</div>
+							
+							<!--/span-->
+
+                           </div>
 						</div>
 						<div class="row">
 
